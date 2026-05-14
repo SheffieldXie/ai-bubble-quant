@@ -2555,41 +2555,64 @@ HTML_TEMPLATE = r"""
             activeTipEl = null;
         }
 
-        // Tooltip positioning — use global overlay for scrollable containers
+        // Tooltip positioning — event delegation for dynamic content
         document.addEventListener('DOMContentLoaded', function() {
+            // Static tips that exist at load time
             document.querySelectorAll('.tip-inline').forEach(function(tip) {
-                var text = tip.querySelector('.tip-text');
-                if (!text) return;
-                var useGlobal = isInsideScrollable(tip);
-                if (useGlobal) {
-                    // Use global overlay for tooltips inside scrollable containers
-                    tip.addEventListener('mouseenter', function() {
-                        showGlobalTooltip(tip, text.innerHTML);
-                    });
-                    tip.addEventListener('mouseleave', function() {
-                        hideGlobalTooltip();
-                    });
-                } else {
-                    // Standard positioning for tooltips outside scrollable containers
-                    tip.addEventListener('mouseenter', function() {
-                        text.style.display = 'block';
-                        var rect = tip.getBoundingClientRect();
-                        var h = text.offsetHeight || 40;
-                        var left = rect.left + rect.width / 2;
-                        var top = rect.top - h - 8;
-                        if (top < 10) top = rect.bottom + 8;
-                        if (left < 120) left = 120;
-                        if (left > window.innerWidth - 120) left = window.innerWidth - 120;
-                        text.style.left = left + 'px';
-                        text.style.top = top + 'px';
-                        text.style.transform = 'translateX(-50%)';
-                    });
-                    tip.addEventListener('mouseleave', function() {
-                        text.style.display = 'none';
-                    });
-                }
+                attachTipHandlers(tip);
             });
         });
+
+        // Event delegation: handle dynamically created tips (backtest table, signal table, etc.)
+        document.addEventListener('mouseover', function(e) {
+            var tip = e.target.closest('.tip-inline');
+            if (!tip || tip.__tipAttached) return;
+            attachTipHandlers(tip);
+            tip.__tipAttached = true;
+            // Trigger the mouseenter immediately
+            tip.dispatchEvent(new Event('mouseenter', { bubbles: false }));
+        });
+        document.addEventListener('mouseout', function(e) {
+            var tip = e.target.closest('.tip-inline');
+            if (!tip) return;
+            // Check if we actually left the tip element
+            if (!tip.contains(e.relatedTarget)) {
+                hideGlobalTooltip();
+                // Also hide CSS-based tips
+                tip.querySelectorAll('.tip-text').forEach(function(t) { t.style.display = 'none'; });
+            }
+        });
+
+        function attachTipHandlers(tip) {
+            var text = tip.querySelector('.tip-text');
+            if (!text) return;
+            var useGlobal = isInsideScrollable(tip);
+            if (useGlobal) {
+                tip.addEventListener('mouseenter', function() {
+                    showGlobalTooltip(tip, text.innerHTML);
+                });
+                tip.addEventListener('mouseleave', function() {
+                    hideGlobalTooltip();
+                });
+            } else {
+                tip.addEventListener('mouseenter', function() {
+                    text.style.display = 'block';
+                    var rect = tip.getBoundingClientRect();
+                    var h = text.offsetHeight || 40;
+                    var left = rect.left + rect.width / 2;
+                    var top = rect.top - h - 8;
+                    if (top < 10) top = rect.bottom + 8;
+                    if (left < 120) left = 120;
+                    if (left > window.innerWidth - 120) left = window.innerWidth - 120;
+                    text.style.left = left + 'px';
+                    text.style.top = top + 'px';
+                    text.style.transform = 'translateX(-50%)';
+                });
+                tip.addEventListener('mouseleave', function() {
+                    text.style.display = 'none';
+                });
+            }
+        }
     </script>
 
     <!-- Master Detail Popup Container -->
