@@ -779,6 +779,70 @@ HTML_TEMPLATE = r"""
             margin-bottom: 16px;
         }
 
+        /* Delivery Dates Bar */
+        .delivery-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+        .delivery-bar-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .delivery-bar-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+        .delivery-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .delivery-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+        .delivery-chip.urgent {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: var(--red);
+        }
+        .delivery-chip.soon {
+            background: rgba(234, 179, 8, 0.12);
+            border-color: rgba(234, 179, 8, 0.3);
+            color: var(--yellow);
+        }
+        .delivery-chip.normal {
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.25);
+            color: var(--accent);
+        }
+        .delivery-chip-label {
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
         .masters-header {
             display: flex;
             align-items: center;
@@ -1801,7 +1865,17 @@ HTML_TEMPLATE = r"""
                 </div>
             </div>
 
-            <!-- Row 2.5: Investment Masters -->
+            <!-- Row 2.5: Delivery Dates -->
+            <div class="delivery-bar" id="delivery-bar">
+                <div class="delivery-bar-title">
+                    <svg class="sico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span>交割日期</span>
+                </div>
+                <div class="delivery-bar-divider"></div>
+                <div class="delivery-chips" id="delivery-chips"></div>
+            </div>
+
+            <!-- Row 2.6: Investment Masters -->
             <div class="row-masters" id="masters-panel">
                 <div class="loading">加载中</div>
             </div>
@@ -2140,6 +2214,64 @@ HTML_TEMPLATE = r"""
                 renderBacktestChart((data.backtest && data.backtest.results) || []);
             } catch(e) { console.error('backtest chart render failed:', e); }
         } catch(e) { console.error('renderDashboard error:', e); }
+        }
+
+        // ── Delivery Dates Bar ──
+        function renderDeliveryDates() {
+            const container = document.getElementById('delivery-chips');
+            if (!container) return;
+
+            // Chinese index options settle on the 3rd Friday of contract month
+            // Calculate upcoming 3rd Fridays
+            function getThirdFriday(year, month) {
+                var firstDay = new Date(year, month - 1, 1);
+                var dayOfWeek = firstDay.getDay();
+                // Friday is 5
+                var firstFriday = dayOfWeek <= 5 ? (5 - dayOfWeek + 1) : (5 - dayOfWeek + 8);
+                var thirdFriday = firstFriday + 14;
+                return new Date(year, month - 1, thirdFriday);
+            }
+
+            var now = new Date();
+            var dates = [];
+            var idxOptions = [
+                { code: 'IF', name: '沪深300' },
+                { code: 'IH', name: '上证50' },
+                { code: 'IC', name: '中证500' },
+                { code: 'MO', name: '中证1000' },
+            ];
+
+            // Get next 4 contract months
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var found = 0;
+            while (found < 4) {
+                if (m > 12) { y++; m = 1; }
+                var df = getThirdFriday(y, m);
+                if (df >= new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+                    var daysUntil = Math.round((df - now) / (1000 * 60 * 60 * 24));
+                    var dateStr = (m < 10 ? '0' + m : m) + '/' + (df.getDate() < 10 ? '0' + df.getDate() : df.getDate());
+                    var label = daysUntil === 0 ? '今天交割' : daysUntil === 1 ? '明天交割' : daysUntil < 7 ? daysUntil + '天后' : (m + '月' + df.getDate() + '日');
+                    var cls = daysUntil <= 1 ? 'urgent' : daysUntil <= 7 ? 'soon' : 'normal';
+                    dates.push({ dateStr: dateStr, label: label, cls: cls, days: daysUntil });
+                    found++;
+                }
+                m++;
+            }
+
+            container.innerHTML = dates.map(function(d, i) {
+                return '<span class="delivery-chip ' + d.cls + '">' +
+                    '<span class="delivery-chip-label">' + d.dateStr + '</span>' +
+                    (d.days <= 1 ? '🔥 ' : '') + d.label +
+                    '</span>';
+            }).join('');
+        }
+
+        // Call on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderDeliveryDates);
+        } else {
+            renderDeliveryDates();
         }
 
         // ── Investment Masters Panel ──
