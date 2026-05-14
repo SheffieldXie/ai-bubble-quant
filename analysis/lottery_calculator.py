@@ -224,12 +224,12 @@ class LotteryCalculator:
                 "pnl_pct": round(pnl_pct, 0),
             })
 
-        # Max profit (index goes to 0)
-        max_profit = (K - premium_points) * m - spec.commission * 2
-        max_profit_pct = max_profit / total_cost * 100 if total_cost > 0 else 0
+        # Breakeven drop % (how much index must drop to recover cost)
+        breakeven_drop = premium_points / self.current_index * 100
 
-        # Risk/reward
-        risk_reward = max_profit / total_cost if total_cost > 0 else 0
+        # Risk/Reward: use realistic 5% drop scenario
+        pnl_5pct = next((s["pnl"] for s in scenarios if s["drop_pct"] == 0.05), 0)
+        risk_reward = max(pnl_5pct, 0) / total_cost if total_cost > 0 else 0
 
         return {
             "strike": K,
@@ -240,9 +240,8 @@ class LotteryCalculator:
             "delta": round(delta, 4),
             "prob_itm": round(prob_itm * 100, 1),
             "breakeven": round(breakeven, 1),
-            "max_profit": round(max_profit, 0),
-            "max_profit_pct": round(max_profit_pct, 0),
-            "risk_reward": round(risk_reward, 1),
+            "breakeven_drop": round(breakeven_drop, 1),
+            "risk_reward": round(risk_reward, 2),
             "scenarios": scenarios,
         }
 

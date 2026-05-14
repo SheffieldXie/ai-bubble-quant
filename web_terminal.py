@@ -2520,10 +2520,10 @@ HTML_TEMPLATE = r"""
             let html = '<div class="calc-content" style="width:100%;"><div style="font-size: 9px; color: var(--text-muted); margin-bottom: 6px;">' +
                 '指数: <span class="mono" style="color:var(--text-primary)">' + formatPrice(idx) + '</span> | IV: 20% | 到期: 7天</div>';
             html += '<div class="calc-table-wrap"><table class="calc-table"><thead><tr>' +
-                '<th>行权价</th><th>虚值%</th><th>成本</th><th>胜率</th><th>跌3%</th><th>跌5%</th><th>R/R</th>' +
+                '<th>行权价</th><th>虚值%</th><th>成本</th><th>胜率</th><th>跌3%</th><th>跌5%</th><th>平衡点</th><th>R/R</th>' +
                 '</tr></thead><tbody>';
             if (!calc.list || calc.list.length === 0) {
-                html += '<tr><td colspan="7" style="text-align:center;color:var(--text-muted)">无数据</td></tr>';
+                html += '<tr><td colspan="8" style="text-align:center;color:var(--text-muted)">无数据</td></tr>';
             } else {
                 (calc.list || []).forEach(r => {
                     const drops = {};
@@ -2531,7 +2531,7 @@ HTML_TEMPLATE = r"""
                         r.scenarios.forEach(s => { drops[s.drop_pct] = s.pnl; });
                     }
                     const rr = r.risk_reward || 0;
-                    const rrCls = rr >= 3 ? 'up' : rr >= 1 ? '' : 'down';
+                    const rrCls = rr >= 2 ? 'up' : rr >= 0.5 ? '' : 'down';
                     html += '<tr>' +
                         '<td>' + formatPrice(r.strike) + '</td>' +
                         '<td>' + r.otm_pct + '%</td>' +
@@ -2539,7 +2539,8 @@ HTML_TEMPLATE = r"""
                         '<td>' + r.prob_itm + '%</td>' +
                         '<td class="' + ((drops[0.03]||0) >= 0 ? 'up' : 'down') + '">' + ((drops[0.03]||0) >= 0 ? '+' : '') + formatNum(drops[0.03] || 0) + '</td>' +
                         '<td class="' + ((drops[0.05]||0) >= 0 ? 'up' : 'down') + '">' + ((drops[0.05]||0) >= 0 ? '+' : '') + formatNum(drops[0.05] || 0) + '</td>' +
-                        '<td class="' + rrCls + '">' + rr.toFixed(1) + 'x</td></tr>';
+                        '<td>' + (r.breakeven_drop ? '跌' + r.breakeven_drop.toFixed(1) + '%' : '-') + '</td>' +
+                        '<td class="' + rrCls + '">' + (rr > 0 ? rr.toFixed(1) : '0.0') + 'x</td></tr>';
                 });
             }
             html += '</tbody></table></div></div>';
