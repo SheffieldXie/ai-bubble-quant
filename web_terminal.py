@@ -1513,7 +1513,7 @@ HTML_TEMPLATE = r"""
             font-variant-numeric: tabular-nums;
             white-space: nowrap;
         }
-        .bt-table td:first-child { text-align: left; font-family: -apple-system, BlinkMacSystemFont, sans-serif; white-space: normal; word-break: break-word; max-width: 70px; }
+        .bt-table td:first-child { text-align: left; font-family: -apple-system, BlinkMacSystemFont, sans-serif; white-space: nowrap; min-width: 160px; max-width: 200px; }
 
         /* ── Chart ────────────────────────────── */
         .chart-container {
@@ -2119,7 +2119,7 @@ HTML_TEMPLATE = r"""
                     const safeDesc = (r.description || r.name || '').replace(/"/g, '&quot;');
                     btHTML += '<tr>' +
                         '<td><span class="tip-inline">' +
-                        '<span style="max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block">' + r.name.substring(0, 10) + '</span>' +
+                        '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block">' + r.name + '</span>' +
                         '<span class="tip-icon">?</span>' +
                         '<span class="tip-text">' + safeDesc + '</span></span></td>' +
                         '<td>' + formatNum(r.index_before) + '</td>' +
