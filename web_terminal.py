@@ -2535,15 +2535,26 @@ HTML_TEMPLATE = r"""
             globalTooltipEl.classList.add('active');
 
             var rect = tipEl.getBoundingClientRect();
-            var w = globalContentEl.offsetWidth || 200;
+            var w = globalContentEl.offsetWidth || 360;
             var h = globalContentEl.offsetHeight || 40;
             var left = rect.left + rect.width / 2;
             var top = rect.top - h - 8;
             if (top < 10) top = rect.bottom + 8;
-            // Keep within viewport bounds
-            var tw = w / 2 + 8;
-            if (left - tw < 0) left = tw;
-            if (left + tw > window.innerWidth) left = window.innerWidth - tw;
+
+            // Constrain to not exceed the table container's left/right edges
+            var container = tipEl.closest('.bt-table-wrap') || tipEl.closest('.sig-table-wrap') || tipEl.closest('.calc-table-wrap');
+            var minLeft = 4;  // minimum 4px from viewport edge
+            var maxRight = window.innerWidth - 4;
+            if (container) {
+                var crect = container.getBoundingClientRect();
+                minLeft = Math.max(4, crect.left + 4);
+                maxRight = Math.min(window.innerWidth - 4, crect.right - 4);
+            }
+
+            // Clamp tooltip center point within bounds
+            var halfW = w / 2;
+            left = Math.max(minLeft + halfW, Math.min(maxRight - halfW, left));
+
             globalContentEl.style.left = left + 'px';
             globalContentEl.style.top = top + 'px';
             globalContentEl.style.transform = 'translateX(-50%)';
