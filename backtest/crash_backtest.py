@@ -39,7 +39,7 @@ HISTORICAL_CRASHES = [
         index_after=3227,   # ~18 months later
         days_to_bottom=548,
         max_drop_pct=-36.0,
-        description="互联网泡沫破裂，纳指从5048跌到1114（-78%）",
+        description="📌 互联网泡沫破裂\n\n背景：1995-2000年科技股狂热，.com公司无盈利也能上市，PE普遍过百。纳斯达克从1000飙至5048。\n\n触发：2000年3月美联储连续加息，微软反垄断案败诉，信心崩塌。\n\n暴跌：两年内纳指暴跌78%（5048→1114），Amazon跌超90%，思科跌86%，VIX从20飙至60，科技板块市值蒸发约5万亿美元。",
     ),
     CrashEvent(
         name="2008 Financial Crisis",
@@ -48,7 +48,7 @@ HISTORICAL_CRASHES = [
         index_after=2100,
         days_to_bottom=517,
         max_drop_pct=-49.0,
-        description="雷曼兄弟倒闭，全球金融危机",
+        description="📌 全球金融危机\n\n背景：次级房贷泡沫膨胀，MBS/CDO层层加杠杆，华尔街把风险藏在表外。雷曼9月15日申请破产（6390亿资产，史上最大），AIG濒临倒闭。\n\n暴跌：标普500从4100跌至666（-84%），VIX飙至89创历史极值，TED利差扩大至464bp，LIBOR市场冻结。\n\n后果：各国央行联合降息+QE1救市，耗时18个月触底。 Dodd-Frank法案出台。",
     ),
     CrashEvent(
         name="2015 China Crash",
@@ -57,7 +57,7 @@ HISTORICAL_CRASHES = [
         index_after=2850,
         days_to_bottom=72,
         max_drop_pct=-45.0,
-        description="A股疯牛转疯熊，千股跌停",
+        description="📌 A股杠杆牛转疯熊\n\n背景：2014-2015年杠杆牛市，场外配资规模超2万亿，上证从2000飙到5178，创业板PE突破140倍。\n\n触发：6月监管严查场外配资，去杠杆引发踩踏，千股跌停成为日常。\n\n暴跌：72天上证暴跌45%（5178→2850），创业板跌65%，两市融资盘强平超万亿。国家队2万亿入市救市，IPO暂停，限制做空。",
     ),
     CrashEvent(
         name="2018 Q4 Flash Crash",
@@ -66,7 +66,7 @@ HISTORICAL_CRASHES = [
         index_after=2346,
         days_to_bottom=81,
         max_drop_pct=-20.0,
-        description="美联储加息+中美贸易战",
+        description="📌 美联储加息 + 贸易战\n\n背景：2018年美联储连续4次加息至2.5%，同时进行缩表。中美贸易战持续升级，苹果警告营收下滑。\n\n暴跌：标普500从2930跌至2346（-20%），进入技术性熊市。12月24日VIX飙至36，科技股领跌，FAANG全线暴跌。\n\n反转：鲍威尔12月26日鸽派转向（\"耐心\"措辞），市场V型反弹，标普Q1反弹13%。",
     ),
     CrashEvent(
         name="2020 COVID Crash",
@@ -75,7 +75,7 @@ HISTORICAL_CRASHES = [
         index_after=2237,
         days_to_bottom=33,
         max_drop_pct=-34.0,
-        description="新冠疫情爆发，史上最速暴跌",
+        description="📌 新冠疫情全球暴跌\n\n背景：2020年2月新冠疫情爆发，3月多国封城，经济活动骤停。\n\n暴跌：标普500从3386跌至2237（-34%），仅23个交易日触发5次熔断（史上首次），VIX飙至82.7超越2008年，原油暴跌甚至3月30日出现负油价。\n\n政策：美联储3天内降息至0+无限量QE，财政部2万亿刺激。3月23日触底后V型反弹，标普8月即创新高。",
     ),
     CrashEvent(
         name="2022 Tech Selloff",
@@ -84,7 +84,7 @@ HISTORICAL_CRASHES = [
         index_after=10088,
         days_to_bottom=349,
         max_drop_pct=-33.0,
-        description="美联储激进加息，科技股杀估值",
+        description="📌 激进加息 + 科技股杀估值\n\n背景：2022年美联储全年加息425bp（0→4.25%），叠加俄乌战争、高通胀。10年美债收益率从1.5%飙至4.3%。\n\n暴跌：纳斯达克从16200跌至10088（-38%），标普跌25%。成长股PE从30x压缩到20x，ARKK基金暴跌67%，Meta一天跌26%。\n\n影响：科技股估值逻辑重构，从\"增长优先\"转向\"盈利为王\"。",
     ),
     CrashEvent(
         name="2024 Aug Yen Carry Unwind",
@@ -93,7 +93,7 @@ HISTORICAL_CRASHES = [
         index_after=3950,
         days_to_bottom=3,
         max_drop_pct=-8.0,
-        description="日元套息交易平仓，全球市场闪崩",
+        description="📌 日元套息交易平仓闪崩\n\n背景：7月日本央行意外加息15bp至0.25%，日元从160急升至142，全球万亿级套息交易大规模平仓。\n\n暴跌：日经单日暴跌12.4%（史上第二大），标普从5700跌至4950（-13%），VIX飙至65，英伟达一天跌10%，苹果跌7%。\n\n反转：日本央行释放鸽派信号，全球央行紧急安抚，一周内快速反弹修复。",
     ),
 ]
 
