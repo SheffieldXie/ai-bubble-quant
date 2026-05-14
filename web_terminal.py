@@ -2249,7 +2249,8 @@ HTML_TEMPLATE = r"""
                 if (m > 12) { y++; m = 1; }
                 var df = getThirdFriday(y, m);
                 if (df >= new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
-                    var daysUntil = Math.round((df - now) / (1000 * 60 * 60 * 24));
+                    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    var daysUntil = Math.round((df - today) / (1000 * 60 * 60 * 24));
                     var dateStr = (m < 10 ? '0' + m : m) + '/' + (df.getDate() < 10 ? '0' + df.getDate() : df.getDate());
                     var label = daysUntil === 0 ? '今天交割' : daysUntil === 1 ? '明天交割' : daysUntil < 7 ? daysUntil + '天后' : (m + '月' + df.getDate() + '日');
                     var cls = daysUntil <= 1 ? 'urgent' : daysUntil <= 7 ? 'soon' : 'normal';
