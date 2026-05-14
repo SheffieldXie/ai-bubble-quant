@@ -1,0 +1,49 @@
+2026-05-07 11:51:16 [INFO] daily_check: ======================================================================
+2026-05-07 11:51:16 [INFO] daily_check: 📊 DAILY MARKET CHECK — 2026-05-07 11:51
+2026-05-07 11:51:16 [INFO] daily_check: ======================================================================
+2026-05-07 11:51:16 [INFO] daily_check: 
+2026-05-07 11:51:16 [INFO] daily_check: Step 1: Fetching market data...
+2026-05-07 11:51:16 [INFO] data.ashare: AShareDataFetcher initialized (Tencent + Sina)
+2026-05-07 11:51:16 [INFO] data.scraper: MarketDataScraper initialized (Tencent + Eastmoney)
+2026-05-07 11:51:17 [INFO] data.ashare: Fetched 77 days of history for CSI1000
+2026-05-07 11:51:18 [INFO] data.ashare: Fetched 77 days of history for CSI300
+2026-05-07 11:51:18 [INFO] data.scraper: Fetched 251 days of history for QQQ from Eastmoney
+2026-05-07 11:51:18 [INFO] daily_check: 
+2026-05-07 11:51:18 [INFO] daily_check: Step 2: Checking signals...
+2026-05-07 11:51:18 [INFO] daily_check:   CSI 1000 MA20: 11.1 | Current: 8648.9
+2026-05-07 11:51:18 [INFO] daily_check:   Nasdaq QQQ RSI(14): 81.6
+2026-05-07 11:51:18 [INFO] daily_check:   CSI 1000 today: +0.70%
+2026-05-07 11:51:18 [INFO] daily_check: 
+2026-05-07 11:51:18 [INFO] daily_check: Step 3: Generating report...
+2026-05-07 11:51:18 [INFO] daily_check: 
+2026-05-07 11:51:18 [INFO] daily_check: Readiness Score: 8.9/100
+2026-05-07 11:51:18 [INFO] daily_check: Alert Level: 🔴  TRIGGER — Consider entering trade
+2026-05-07 11:51:18 [INFO] daily_check: Signals Triggered: 1/12
+2026-05-07 11:51:18 [INFO] daily_check: Notification sent
+2026-05-07 11:51:18 [INFO] daily_check: 
+2026-05-07 11:51:18 [INFO] daily_check: ✅ Daily check complete.
+2026-05-07 11:51:18 [INFO] daily_check:    Report saved to: /Volumes/WD SN570 1TB SSD/projects/ai-bubble-quant/logs/daily_reports/report_20260507.txt
+2026-05-07 11:51:18 [INFO] daily_check:    State saved to: /Volumes/WD SN570 1TB SSD/projects/ai-bubble-quant/data/daily_check_state.json
+2026-05-07 11:54:03 [INFO] daily_check: ======================================================================
+2026-05-07 11:54:03 [INFO] daily_check: 📊 DAILY MARKET CHECK — 2026-05-07 11:54
+2026-05-07 11:54:03 [INFO] daily_check: ======================================================================
+2026-05-07 11:54:03 [INFO] daily_check: 
+2026-05-07 11:54:03 [INFO] daily_check: Step 1: Fetching market data...
+2026-05-07 11:54:03 [INFO] data.ashare: AShareDataFetcher initialized (Tencent + Sina)
+2026-05-07 11:54:03 [INFO] data.scraper: MarketDataScraper initialized (Tencent + Eastmoney)
+2026-05-07 11:54:04 [ERROR] data.ashare: Eastmoney history fetch failed for CSI1000: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-05-07 11:54:04 [ERROR] data.ashare: Eastmoney history fetch failed for CSI300: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-05-07 11:54:05 [ERROR] data.scraper: Eastmoney history fetch failed for QQQ: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-05-07 11:54:05 [INFO] daily_check: 
+2026-05-07 11:54:05 [INFO] daily_check: Step 2: Checking signals...
+2026-05-07 11:54:05 [INFO] daily_check:   CSI 1000 today: +1.13%
+2026-05-07 11:54:05 [INFO] daily_check: 
+2026-05-07 11:54:05 [INFO] daily_check: Step 3: Generating report...
+2026-05-07 11:54:05 [INFO] daily_check: 
+2026-05-07 11:54:05 [INFO] daily_check: Readiness Score: 0.0/100
+2026-05-07 11:54:05 [INFO] daily_check: Alert Level: ℹ️  INFO
+2026-05-07 11:54:05 [INFO] daily_check: Signals Triggered: 0/12
+2026-05-07 11:54:05 [INFO] daily_check: 
+2026-05-07 11:54:05 [INFO] daily_check: ✅ Daily check complete.
+2026-05-07 11:54:05 [INFO] daily_check:    Report saved to: /Volumes/WD SN570 1TB SSD/projects/ai-bubble-quant/logs/daily_reports/report_20260507.txt
+2026-05-07 11:54:05 [INFO] daily_check:    State saved to: /Volumes/WD SN570 1TB SSD/projects/ai-bubble-quant/data/daily_check_state.json

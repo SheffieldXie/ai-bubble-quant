@@ -1,0 +1,38 @@
+# AI / Tech stocks to monitor for bubble assessment
+# Format: ticker: {name, sector, weight}
+
+ai_chips:
+  NVDA: {name: "NVIDIA", sector: "Semiconductors", weight: 0.15}
+  AMD: {name: "AMD", sector: "Semiconductors", weight: 0.05}
+  AVGO: {name: "Broadcom", sector: "Semiconductors", weight: 0.05}
+  TSM: {name: "TSMC", sector: "Semiconductors", weight: 0.05}
+  ARM: {name: "Arm Holdings", sector: "Semiconductors", weight: 0.03}
+
+ai_hyperscalers:
+  MSFT: {name: "Microsoft", sector: "Cloud/AI", weight: 0.12}
+  GOOGL: {name: "Alphabet", sector: "Cloud/AI", weight: 0.10}
+  AMZN: {name: "Amazon", sector: "Cloud/AI", weight: 0.08}
+  META: {name: "Meta Platforms", sector: "Cloud/AI", weight: 0.07}
+  ORCL: {name: "Oracle", sector: "Cloud/AI", weight: 0.03}
+
+ai_infrastructure:
+  SMCI: {name: "Super Micro Computer", sector: "AI Servers", weight: 0.05}
+  DELL: {name: "Dell Technologies", sector: "AI Servers", weight: 0.03}
+  PLTR: {name: "Palantir", sector: "AI Software", weight: 0.04}
+  SNOW: {name: "Snowflake", sector: "AI Data", weight: 0.03}
+  MDB: {name: "MongoDB", sector: "AI Data", weight: 0.03}
+
+ai_picks_shovels:
+  ARCB: {name: "ArcBest", sector: "AI Logistics", weight: 0.02}
+  VRT: {name: "Vertiv Holdings", sector: "AI Cooling", weight: 0.03}
+  MPWR: {name: "Monolithic Power", sector: "AI Power", weight: 0.02}
+
+# Benchmark / market indices
+indices:
+  SPY: {name: "S&P 500 ETF", sector: "Index", weight: 0.0}
+  QQQ: {name: "Nasdaq 100 ETF", sector: "Index", weight: 0.0}
+  XLK: {name: "Tech Sector ETF", sector: "Index", weight: 0.0}
+
+# VIX for volatility / fear gauge
+volatility:
+  VIX: {name: "CBOE Volatility Index", sector: "Volatility", weight: 0.0}

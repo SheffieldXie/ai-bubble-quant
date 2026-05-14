@@ -1,0 +1,21 @@
+# AI Bubble Quant — Dependencies
+
+# Web
+flask>=3.0
+
+# Data
+yfinance>=0.2.31
+pandas>=2.0
+numpy>=1.24
+
+# Config
+pyyaml>=6.0
+
+# Visualization
+matplotlib>=3.7
+
+# Storage
+pyarrow>=14.0
+
+# LLM (optional — for investment masters reasoning generation)
+openai>=1.0

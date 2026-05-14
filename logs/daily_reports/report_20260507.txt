@@ -1,0 +1,56 @@
+📊 每日市场检查报告 — 2026-05-07
+==================================================
+
+📈 A股指数:
+  沪深300: 4886.24 +0.19%
+  中证500: 8648.94 +0.70%
+  中证1000: 8671.07 +1.13%
+  上证50: 3021.95 -0.15%
+  上证指数: 4170.75 +0.25%
+  深证成指: 15569.46 +0.71%
+  创业板指: 3815.24 +0.98%
+  科创50: 1663.93 +0.42%
+
+📈 美股ETF:
+  SPY: $733.83
+  QQQ: $695.77
+
+================================================================================
+CFFEX 0DTE OPTION ENTRY SIGNAL DASHBOARD
+================================================================================
+
+Readiness Score: 0.0/100
+Alert Level: ℹ️  INFO
+Signals Triggered: 0/12
+
+Signal                              Category            Value  Threshold Status      
+--------------------------------------------------------------------------------
+VIX spikes above 30                 Macro                 N/A      30.00 ℹ️  INFO
+US 10Y yield spikes >4.8%           Macro                 N/A       4.80 ℹ️  INFO
+USD/CNY breaks 7.35                 Macro                 N/A       7.35 ℹ️  INFO
+Nasdaq RSI (weekly) > 80            Technical             N/A      80.00 ℹ️  INFO
+CSI 1000 breaks 20-day MA           Technical             N/A       0.00 ℹ️  INFO
+Nasdaq drops >3% in one day         Technical             N/A      -3.00 ℹ️  INFO
+A-share AI stocks: limit-up day count Sentiment             N/A      20.00 ℹ️  INFO
+Put/Call ratio drops below 0.6      Sentiment             N/A       0.60 ℹ️  INFO
+NVIDIA revenue growth slows <40% YoY Fundamental           N/A      40.00 ℹ️  INFO
+Big Tech AI capex guidance cut      Fundamental           N/A       0.00 ℹ️  INFO
+Fed signals no rate cuts or hike    Event                 N/A       0.00 ℹ️  INFO
+China tech regulation news          Event                 N/A       0.00 ℹ️  INFO
+
+No signals triggered yet. Monitoring continues...
+================================================================================
+
+🎰 期权彩票计算器（中证1000认沽）:
+--------------------------------------------------
+  当前指数: 8671 | IV: 20% | 到期: 7天
+       行权价    虚值%       成本     胜率        跌3%        跌5%
+  ----------------------------------------------------------
+      7850   9.5%      31元   0.0%       -31元       -31元
+      7800  10.0%      31元   0.0%       -31元       -31元
+      7750  10.6%      31元   0.0%       -31元       -31元
+      7700  11.2%      31元   0.0%       -31元       -31元
+      7650  11.8%      31元   0.0%       -31元       -31元
+      7600  12.4%      31元   0.0%       -31元       -31元
+      7900   8.9%      32元   0.0%       -32元       -32元
+      7550  12.9%      31元   0.0%       -31元       -31元

@@ -1,0 +1,53 @@
+# Global settings
+data:
+  # Default data source
+  default_source: "yfinance"
+  # Cache directory
+  cache_dir: "./data/cache"
+  # Cache expiration in hours
+  cache_ttl_hours: 24
+  # Default lookback period for historical data
+  lookback_years: 5
+
+# Analysis
+analysis:
+  # Bubble metrics weights (must sum to 1.0)
+  # These keys must match CompositeScorer.DEFAULT_WEIGHTS
+  bubble_weights:
+    valuation: 0.30        # PE, P/S, P/B vs historical norms
+    momentum: 0.20         # Price vs MAs, RSI, Bollinger Bands
+    sentiment: 0.15        # VIX, fear/greed, retail enthusiasm
+    fundamentals: 0.20     # Revenue growth vs price growth, CAPEX
+    insider: 0.15          # Insider selling patterns
+  # Bubble score thresholds
+  bubble_thresholds:
+    low: 0.3
+    moderate: 0.5
+    high: 0.7
+    extreme: 0.85
+
+# Strategy
+strategy:
+  # Minimum bubble score to consider shorting
+  min_score_to_short: 0.65
+  # Maximum portfolio exposure (as fraction)
+  max_exposure: 0.8
+  # Individual position limit
+  max_single_position: 0.15
+  # Stop loss percentage
+  stop_loss_pct: 0.10
+  # Take profit percentage
+  take_profit_pct: 0.20
+  # Rebalance frequency (days)
+  rebalance_days: 5
+
+# Backtest
+backtest:
+  # Initial capital
+  initial_capital: 1000000
+  # Commission per trade
+  commission: 0.001
+  # Slippage model
+  slippage_pct: 0.0005
+  # Benchmark ticker
+  benchmark: "SPY"

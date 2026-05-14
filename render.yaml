@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ai-bubble-quant
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python web_terminal.py --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        sync: false
+      - key: OPENAI_MODEL
+        sync: false

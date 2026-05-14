@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 web_terminal.py --port 5000)",
+      "Bash(open \"http://127.0.0.1:5000\")",
+      "Bash(kill 37613)",
+      "Bash(curl -s http://127.0.0.1:5000/api/data)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d['signals'], indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(curl -s http://127.0.0.1:5000/api/refresh)",
+      "Bash(python3 -c ' *)",
+      "Bash(kill 39882)",
+      "Bash(xargs kill -9)"
+    ]
+  }
+}
