@@ -443,6 +443,7 @@ def get_all_data(force_fresh=False):
     for r in bt_results:
         bt_list.append({
             "name": r.crash.name,
+            "description": r.crash.description,
             "index_before": r.index_at_entry,
             "strike": r.put_strike,
             "premium": r.premium_paid,
@@ -2109,22 +2110,13 @@ HTML_TEMPLATE = r"""
 
         // ── Backtest Table ──
             try {
-                var eventDescs = {
-                    '2000 Dotcom Burst': '互联网泡沫破裂，纳指从5048跌到1114（-78%）',
-                    '2008 Financial Crisis': '雷曼兄弟倒闭，全球金融危机',
-                    '2015 China Crash': 'A股疯牛转疯熊，千股跌停',
-                    '2018 Q4 Flash Crash': '美联储加息+中美贸易战',
-                    '2020 COVID Crash': '新冠疫情爆发，史上最速暴跌',
-                    '2022 Tech Selloff': '美联储激进加息，科技股杀估值',
-                    '2024 Aug Yen Carry Unwind': '日元套息交易平仓，全球市场闪崩',
-                };
                 const bt = data.backtest || {};
                 let btHTML = '<div class="bt-table-wrap"><table class="bt-table"><thead><tr>' +
                     '<th>事件</th><th>买入</th><th>行权价</th><th>成本</th><th>暴跌后</th><th>盈亏%</th><th>盈亏</th>' +
                     '</tr></thead><tbody>';
                 (bt.results || []).forEach(r => {
                     const pnlCls = r.pnl_pct >= 0 ? 'up' : 'down';
-                    const safeDesc = (eventDescs[r.name] || r.name || '').replace(/"/g, '&quot;');
+                    const safeDesc = (r.description || r.name || '').replace(/"/g, '&quot;');
                     btHTML += '<tr>' +
                         '<td><span class="tip-inline">' +
                         '<span style="max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block">' + r.name.substring(0, 10) + '</span>' +
